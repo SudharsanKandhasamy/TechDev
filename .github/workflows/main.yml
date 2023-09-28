@@ -1,9 +1,8 @@
-name: Deploy to GitHub Pages
-
+name: UAT
 on:
   push:
     branches:
-      - master
+      - Master
 
 jobs:
   deploy:
