@@ -28,6 +28,6 @@ jobs:
               auto_merge: true,
               environment: "production",
               secrets: {
-                MY_DEPLOYMENT_TOKEN: "${{ secrets.Tech_dev }}",
+                TECH_DEV: "${{ secrets.TECH_DEV }}",
               }
             })
