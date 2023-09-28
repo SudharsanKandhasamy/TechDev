@@ -4,15 +4,30 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'Master'
+                checkout scm
             }
         }
 
-        stage('Build') { 
+        stage('NPM Install') {
             steps {
-                npm install
-                npm run build
+                sh 'npm install'
             }
+        }
+
+        stage('Build') {
+            steps {
+                sh 'npm run build'
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Build successful!'
+        }
+
+        failure {
+            echo 'Build failed!'
         }
     }
 }
