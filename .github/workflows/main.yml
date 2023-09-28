@@ -3,18 +3,14 @@ name: UAT
 on:
   push:
     branches:
-      - Master  # Change 'Master' to 'master' if your branch name is lowercase
+      - Master
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
+      - uses: actions/checkout@v3
 
       - name: Install dependencies
         run: npm install
@@ -23,14 +19,15 @@ jobs:
         run: npm run build
 
       - name: Deploy application
-        run: |
-          echo "Creating a deployment"
-          echo "ref: ${{ github.ref }}"
-          echo "environment: production"
-
-          # Use the 'GITHUB_TOKEN' secret to create a deployment
-          gh deployment create \
-            --ref "${{ github.ref }}" \
-            --environment "production" \
-            --auto-merge \
-            --token "${{ secrets.GITHUB_TOKEN }}"
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.actions.createDeployment("UAT", {
+              ref: github.ref,
+              task: "deploy",
+              auto_merge: true,
+              environment: "production",
+              secrets: {
+                GH_TOKEN: "${{ secrets.GH_TOKEN }}",
+              }
+            })
