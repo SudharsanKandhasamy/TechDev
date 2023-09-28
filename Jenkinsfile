@@ -1,7 +1,7 @@
 pipeline {
     agent any
 
-    satges {
+    stages {
         stage('Checkout') {
             steps {
                 git branch: 'Master'
