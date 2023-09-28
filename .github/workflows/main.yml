@@ -26,7 +26,7 @@ jobs:
 
       - name: Deploy to GitHub Pages
         run: |
-          git config user.name "GitHub Actions"
-          git config user.email "actions@github.com"
+          git config user.name "SudharsanKandhasamy"
+          git config user.email "techdevdeveloper@gmail.com"
           npm install -g gh-pages
           npm run deploy  # You need to define a "deploy" script in your package.json
