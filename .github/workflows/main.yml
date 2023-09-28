@@ -19,6 +19,6 @@ jobs:
         run: npm run build
 
       - name: Deploy application
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v2
         with:
           github_token: ${{ secrets.GH_TOKEN }}
