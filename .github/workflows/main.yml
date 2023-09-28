@@ -1,29 +1,33 @@
 name: UAT
+
 on:
   push:
     branches:
       - Master
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
+      - uses: actions/checkout@v3
 
       - name: Install dependencies
         run: npm install
 
-      - name: Build
+      - name: Build application
         run: npm run build
 
-      - name: Deploy to GitHub Pages
-        run: |
-          git config user.name "SudharsanKandhasamy"
-          git config user.email "UAT@github.com"
-          npm install -g gh-pages
-          npm run deploy  
+      - name: Deploy application
+        uses: actions/github-script@v6
+        with:
+          script: |
+            github.actions.createDeployment("UAT", {
+              ref: github.ref,
+              task: "deploy",
+              auto_merge: true,
+              environment: "production",
+              secrets: {
+                MY_DEPLOYMENT_TOKEN: "${{ secrets.Tech_dev }}",
+              }
+            })
