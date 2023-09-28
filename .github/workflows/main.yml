@@ -21,4 +21,4 @@ jobs:
       - name: Deploy application
         uses: actions/deploy-pages@v2
         with:
-          github_token: ${{ secrets.GH_TOKEN }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
