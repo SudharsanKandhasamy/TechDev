@@ -28,6 +28,6 @@ jobs:
               auto_merge: true,
               environment: "production",
               secrets: {
-                TECH_DEV: "${{ secrets.TECH_DEV }}",
+                GH_TOKEN: "${{ secrets.GH_TOKEN }}",
               }
             })
