@@ -1,0 +1,95 @@
+.mainbody {
+    background-image: url("https://img.freepik.com/free-photo/modern-office-equipment-global-communication-needs-generated-by-ai_24640-87135.jpg?size=626&ext=jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .login-container {
+    position: relative;
+    width: 300px;
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 40px;
+    transform: scale(0);
+    opacity: 0;
+    animation: loginAnimation 0.5s ease-out forwards;
+  }
+  
+  @keyframes loginAnimation {
+    0% {
+      transform: scale(0);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+  
+  .title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #555;
+  }
+  
+  .input-field {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    background-color: #f7f7f7;
+    color: #333;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .btn-login {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    background-color: #f9f9fd;
+    color: #505455;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-login:hover {
+    background-color: #8080f8;
+  }
+  
+  .terms-link {
+    margin-top: 20px;
+    color: #666;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  
+  .login-container:before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    background-color: #ececf1;
+    z-index: -1;
+    border-radius: 8px;
+    opacity: 0.9;
+  } 
