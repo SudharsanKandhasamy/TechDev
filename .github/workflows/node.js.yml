@@ -2,35 +2,30 @@ name: CODEFE Deployment
 
 on:
   push:
-    branches:
-      - Master
+    branches: [ "Master" ]
   pull_request:
-    branches:
-      - Master
+    branches: [ "Master" ]
 
 jobs:
   build:
 
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        node-version: [18.x]
+
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-
-    - name: Use Node.js 18.x
-      uses: actions/setup-node@v2
+    - uses: actions/checkout@v3
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
       with:
-        node-version: 18.x
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    - run: npm ci
+    - run: npm run build --if-present
 
-    - name: Install dependencies
-      run: npm install --force
-
-    - name: Build the project
-      run: npm run build --if-present
-
-    - name: Deploy to GitHub Pages
+    - name: Deploy 
       uses: JamesIves/github-pages-deploy-action@v4
       with:
-        folder: build
-      env:
-        GH_PAGES_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          folder: build
